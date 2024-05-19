@@ -19,3 +19,5 @@ To throw an exception, you use the throw keyword followed by an expression that 
 **4. Catch:**
 
 To catch an exception, you use a catch block, specifying the type of exception you want to catch. If an exception of that type (or a derived type) is thrown within the corresponding try block, the catch block is executed.
+### Example:
+Here's an example demonstrating exception handling in C++:
