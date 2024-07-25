@@ -94,8 +94,7 @@ If the file does not exist, it will be created.
 	std::cout << "Shrubbery Creation Form Operator Overload Called" << std::endl;
 	if (this != &overload) 
     {
-        AForm::operator=(overload); // Call the base class assignment operator
-        // Calls the base class assignment operator to handle assignment of base class members.
+        AForm::operator=(overload); //<------------
     }
 	return(*this);
 }
@@ -145,7 +144,7 @@ class ShrubberyCreationForm : public AForm {
 public:
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &overload) {
         if (this != &overload) {
-            AForm::operator=(overload); //<------------
+            AForm::operator=(overload); 
         }
         return *this;
     }
