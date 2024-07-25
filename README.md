@@ -77,7 +77,15 @@ In this example, noexcept is used to specify that the what() function of MyExcep
 ### Summary:
 Exception handling in C++ allows you to gracefully handle errors and exceptional conditions. By using try-catch blocks, you can separate error-handling code from normal code flow, making your programs more robust and maintainable.
 
+## ex01
+std::ofstream: This is a stream class to write on files. 
+It is part of the C++ Standard Library and is included via the <fstream> header.
 
+( ... ).c_str() converts the resulting std::string to a C-style string 
+(i.e., a pointer to a null-terminated array of characters), which is required by the open method of std::ofstream.
+
+open() Method: The open method of std::ofstream opens a file whose name is specified by the C-style string. 
+If the file does not exist, it will be created.
 ## ex02
 
 ```bash
