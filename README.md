@@ -78,3 +78,75 @@ In this example, noexcept is used to specify that the what() function of MyExcep
 Exception handling in C++ allows you to gracefully handle errors and exceptional conditions. By using try-catch blocks, you can separate error-handling code from normal code flow, making your programs more robust and maintainable.
 
 
+## ex02
+
+```bash
+  ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &overload) 
+{
+	std::cout << "Shrubbery Creation Form Operator Overload Called" << std::endl;
+	if (this != &overload) 
+    {
+        AForm::operator=(overload); // Call the base class assignment operator
+        // Calls the base class assignment operator to handle assignment of base class members.
+    }
+	return(*this);
+}
+```
+
+```bash
+  AForm::operator=(overload);
+```
+
+This line explicitly calls the assignment operator of the base class AForm. This is necessary because the derived class (ShrubberyCreationForm in this case) may have inherited members from the base class that need to be properly copied or assigned.
+
+## Why Call the Base Class Assignment Operator?
+### Inherited Members:
+The base class AForm may have private or protected members that are not accessible directly in the derived class. By calling the base class assignment operator, you ensure that all the members of the base class are correctly copied.
+
+### Base Class Initialization:
+If the base class AForm has its own internal state or resources (like dynamically allocated memory), the base class assignment operator is responsible for properly managing these resources during assignment.
+
+### Avoid Code Duplication:
+The base class AForm might have complex logic for assigning its members. Reusing this logic through the base class assignment operator helps avoid duplicating code in the derived class.
+
+### Example with the ShrubberyCreationForm Class
+Suppose AForm has some members like name, signed, gradeToSign, and gradeToExecute. When you assign one ShrubberyCreationForm to another, you need to ensure these base class members are properly copied. Here’s a more complete example to illustrate:
+
+```bash
+class AForm {
+public:
+    AForm &operator=(const AForm &other) {
+        if (this != &other) {
+            // Copy the base class members
+            name = other.name;
+            signed = other.signed;
+            gradeToSign = other.gradeToSign;
+            gradeToExecute = other.gradeToExecute;
+        }
+        return *this;
+    }
+
+protected:
+    std::string name;
+    bool signed;
+    int gradeToSign;
+    int gradeToExecute;
+};
+
+class ShrubberyCreationForm : public AForm {
+public:
+    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &overload) {
+        if (this != &overload) {
+            AForm::operator=(overload); // Call the base class assignment operator
+            // Assign any additional members of ShrubberyCreationForm if needed
+        }
+        return *this;
+    }
+};
+```
+
+In this example, the call to AForm::operator=(overload) ensures that the members name, signed, gradeToSign, and gradeToExecute are properly copied from the overload object to this object.
+
+
+
+"*The step of calling the base class assignment operator within the derived class assignment operator ensures that all the base class members are properly assigned. This practice helps maintain the integrity of the object’s state, prevents code duplication, and adheres to the principles of inheritance in C++. "*
