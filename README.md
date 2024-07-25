@@ -158,6 +158,28 @@ In this example, the call to AForm::operator=(overload) ensures that the members
 "*The step of calling the base class assignment operator within the derived class assignment operator ensures that all the base class members are properly assigned. This practice helps maintain the integrity of the object’s state, prevents code duplication, and adheres to the principles of inheritance in C++. "*
 
 
+```bash
+void RobotomyRequestForm::formAction() const
+{
+
+	std::srand(std::time(0));
+	int successRate = std::rand() % 2;
+
+	std::cout << BLUE << "Making some drilling noises..." << RESET << std::endl;
+
+	if (successRate == 1)
+	{
+		std::cout << GREEN << getTarget() << " has been robotomized successfully!" << RESET << std::endl;
+	}
+	else
+	{
+		std::cout << YELLOW << "Robotomy failed for " << getTarget() << "." << RESET << std::endl;
+	}
+}
+```
+This method ensures that every time formAction() is called, there's a 50% chance of success and a 50% chance of failure, simulating the randomness of the robotomy operation as specified.
+Random Success or Failure: int successRate = std::rand() % 2 generates either 0 or 1.(The int successRate = std::rand() % 2; line generates a random integer and then takes its modulo 2. This results in either 0 or 1, each with a 50% probability.)
+
 ### Seeding the Random Number Generator:
 
 ```bash
