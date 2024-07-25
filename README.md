@@ -162,8 +162,9 @@ In this example, the call to AForm::operator=(overload) ensures that the members
 void RobotomyRequestForm::formAction() const
 {
 
-	std::srand(std::time(0));
-	int successRate = std::rand() % 2;
+	std::srand(std::time(0)); // Seed the random number generator with the current time
+	int successRate = std::rand() % 2; // Generate a random number (0 or 1)
+
 
 	std::cout << BLUE << "Making some drilling noises..." << RESET << std::endl;
 
