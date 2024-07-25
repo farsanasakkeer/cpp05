@@ -145,8 +145,7 @@ class ShrubberyCreationForm : public AForm {
 public:
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &overload) {
         if (this != &overload) {
-            AForm::operator=(overload); // Call the base class assignment operator
-            // Assign any additional members of ShrubberyCreationForm if needed
+            AForm::operator=(overload); //<------------
         }
         return *this;
     }
