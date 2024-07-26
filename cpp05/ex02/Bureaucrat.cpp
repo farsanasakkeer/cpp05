@@ -6,7 +6,7 @@
 /*   By: farsana <farsana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:55:20 by fvaliyak          #+#    #+#             */
-/*   Updated: 2024/07/23 22:49:08 by farsana          ###   ########.fr       */
+/*   Updated: 2024/07/25 18:48:31 by farsana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 Bureaucrat::Bureaucrat():_name("default"),_grade(150)
 {
-	std::cout << GREEN << "Bureaucrat default constructor called" << RESET << std::endl;
+	std::cout <<  "Bureaucrat default constructor called" << std::endl;
 }
-
 Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name)
 {
-	std::cout << GREEN << "Bureaucrat " << this->_name  << " named constructor called" << RESET << std::endl;
-	
+	std::cout <<  "Bureaucrat " << this->_name  << " named constructor called" << std::endl;
 		if (grade < 1)
 			throw Bureaucrat::GradeTooHighException();
 		else if (grade > 150)
@@ -32,7 +30,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << GREEN << "Bureaucrat destructor called" << RESET << std::endl;
+	std::cout <<  "Bureaucrat destructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy):_name(copy._name),_grade(copy._grade)
@@ -88,6 +86,38 @@ void Bureaucrat::decGrade()
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &in)
 {
-	out << YELLOW << "Bureaucrat  name: \"" << in.getName() << "\", Bureaucrat grade: " << in.getGrade()  << RESET;
+	out << YELLOW << "Bureaucrat  name: " << in.getName() << "\nBureaucrat grade: " << in.getGrade()  << RESET;
 	return out;
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+	try{
+		form.beSigned(*this);
+		std::cout <<  "Bureaucrat "<< this->_name << GREEN << " signed the form " << RESET << form.getName() << std::endl;
+	}catch(const std::exception &e)
+	{
+		std::cerr <<  "Bureaucrat " << this->_name <<RED << " could not sign the form " << RESET <<
+			form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(const AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout <<  "Bureaucrat "<< this->_name << GREEN << " executed the form " << RESET << form.getName() << std::endl;
+
+
+	}
+	catch(std::exception &e)
+	{
+		std::cerr <<  "Bureaucrat " << this->_name <<RED << " could not execute the form " << RESET <<
+			form.getName() << " because " << e.what() << std::endl;
+	}
+	
+
+
+
 }

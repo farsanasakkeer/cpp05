@@ -6,7 +6,7 @@
 /*   By: farsana <farsana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:55:45 by fvaliyak          #+#    #+#             */
-/*   Updated: 2024/07/21 19:09:29 by farsana          ###   ########.fr       */
+/*   Updated: 2024/07/23 20:51:19 by farsana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define PURPLE			"\033[35m"
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form; // Forward declaration to resolve circular dependency
 
 class Bureaucrat
 {
@@ -39,6 +42,8 @@ class Bureaucrat
 
 		void incGrade();
 		void decGrade();
+
+		void signForm(Form &form);		
 
 		class GradeTooHighException : public std::exception
 		{
