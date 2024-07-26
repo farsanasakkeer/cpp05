@@ -186,5 +186,5 @@ Random Success or Failure: int successRate = std::rand() % 2 generates either 0 
 ```bash
 std::srand(std::time(0));
 ```
-* std::srand: This function seeds the random number generator used by std::rand(). The seed value initializes the random number generator, influencing the sequence of random numbers that will be produced.
-* std::time(0): This function returns the current time in seconds since the epoch (typically January 1, 1970). Using the current time as the seed value ensures that the sequence of random numbers is different each time the program runs. This avoids generating the same sequence of random numbers on each execution, which would happen if a fixed seed value were used.
+* ` std::srand ` : This function seeds the random number generator used by std::rand(). The seed value initializes the random number generator, influencing the sequence of random numbers that will be produced.
+* ` std::time(0) ` : This function returns the current time in seconds since the epoch (typically January 1, 1970). Using the current time as the seed value ensures that the sequence of random numbers is different each time the program runs. This avoids generating the same sequence of random numbers on each execution, which would happen if a fixed seed value were used.
